@@ -1,19 +1,12 @@
+## Objective
+We want to ping from one namespace to another and they will be in the different network. 
+
+## Network Diagram 
+
 ![image](https://github.com/user-attachments/assets/57feb0ba-8308-4266-9b3a-f822878275ed)
 
-## Overview
 
-The steps outlined in this guide include:
-
-1. **Creating Network Bridges**: Setup virtual bridges for network communication.
-2. **Creating Network Namespaces**: Simulate different network environments.
-3. **Creating Virtual Interfaces**: Configure veth interfaces for communication between namespaces and bridges.
-4. **Assigning IP Addresses**: Setup IP addresses on namespaces and bridges.
-5. **Configuring Routing and Forwarding Rules**: Allow traffic forwarding between the namespaces.
-6. **Setting up IP Tables**: Apply firewall and forwarding rules.
-
----
-
-## Table of Contents
+## Steps
 
 1. [Create Network Bridges](#create-network-bridges)
 2. [Create Network Namespaces](#create-network-namespaces)
