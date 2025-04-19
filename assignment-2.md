@@ -11,10 +11,11 @@ npm init -y
 Install necessary dependencies (Express and MySQL):
 ```
 npm install express mysql2:
-```bash
+```
+
 Create a Node.js application that connects to MySQL and Implement the required API endpoints (health and users):
 Create a file named *index.js* and paste the following code
-```javaScript
+```javascript
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
