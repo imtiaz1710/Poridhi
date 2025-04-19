@@ -14,7 +14,7 @@ npm install express mysql2:
 ```
 
 Create a Node.js application that connects to MySQL and Implement the required API endpoints (health and users):
-Create a file named *index.js* and paste the following code
+Create a file named *index.js* and paste the following code:
 ```javascript
 const express = require('express');
 const mysql = require('mysql2');
@@ -59,12 +59,14 @@ app.listen(PORT, () => {
 ```
 ##  Part 2: Database Setup
  Install MySQL if not already installed:
-```
+ 
+```bash
 sudo apt update
 sudo apt install mysql-server
 ```
 Secure the MySQL installation:
-```
+
+```bash
 sudo mysql_secure_installation
 
 ```
@@ -72,7 +74,7 @@ sudo mysql_secure_installation
 
 Create the required database, user, and table. Add sample data to the table: 
 
-```
+```sql
 -- Login to MySQL
 sudo mysql -u root -p
 
@@ -97,18 +99,21 @@ INSERT INTO users (name, email) VALUES
 
 ##  Part 3: systemd Configuration
 Create a dedicated system user for running the application:
-```
+
+```bash
 sudo useradd -r -s /bin/false demonodeapp
 ```
 Place your application in an appropriate directory with proper permissions:
-```
+
+```bash
 sudo mkdir -p /opt/demo-node-app
 sudo cp -r * /opt/demo-node-app
 sudo chown -R demonodeapp:demonodeapp /opt/demo-node-app/
 ```
 Create a systemd service file for your application & Configure appropriate service options (restart policy, dependencies, security):
 Create a file in the following location */etc/systemd/system/demo-node-app.service*
-```
+
+```systemd
 [Unit]
 Description=Practice Node.js App
 After=network.target mysql.service
@@ -128,49 +133,57 @@ StandardError=journal
 WantedBy=multi-user.target
 
 ```
+
 Enable the service to start at boot time:
-```
+
+```bash
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable demo_node_app
 ```
+
 ##  Part 4: Testing
 Start your service and verify it's running:
 start the service:
-```
+
+```bash
 sudo systemctl start demo_node_app
 ```
 verify the status :
-```
- sudo systemctl status demo_node_app
 
+```bash
+ sudo systemctl status demo_node_app
 ```
 
 ![image](https://github.com/user-attachments/assets/d987e838-92ca-4d1d-99c5-c255c3ff1f86)
 
 check the log messages in journalctl:
-```
+
+```bash
 journalctl -u node.service -f
 ```
+
 ![image](https://github.com/user-attachments/assets/e3d65f0a-93f2-416c-9e23-acad5dfb2d04)
 
 Test that your application endpoints work correctly:
-```
+
+```bash
 curl http://localhost:3000/health
 curl http://localhost:3000/users
-
 ```
 ![image](https://github.com/user-attachments/assets/4294ba28-c827-4c1e-82aa-6d189e0d0aa1)
 
 Test that your service restarts if the application crashes:
-```
+
+```bash
  sudo pkill -f "node index.js"
  sudo systemctl status demo_node_app
 ```
 ![image](https://github.com/user-attachments/assets/057ed737-1473-42ef-9b6e-cc2614eac229)
 
 Reboot your system and verify the service starts automatically:
-```
+
+```bash
 sudo reboot
 # After reboot
 sudo systemctl status demo_node_app
