@@ -10,7 +10,7 @@ npm init -y
 ```
 Install necessary dependencies (Express and MySQL):
 ```
-npm install express mysql2
+npm install express mysql2:
 ```
 Create a Node.js application that connects to MySQL and Implement the required API endpoints (health and users):
 Create a file named *index.js* and paste the following code
@@ -62,7 +62,7 @@ app.listen(PORT, () => {
 sudo apt update
 sudo apt install mysql-server
 ```
-Secure the MySQL installation
+Secure the MySQL installation:
 ```
 sudo mysql_secure_installation
 
@@ -95,11 +95,11 @@ INSERT INTO users (name, email) VALUES
 ```
 
 ##  Part 3: systemd Configuration
-Create a dedicated system user for running the application
+Create a dedicated system user for running the application:
 ```
 sudo useradd -r -s /bin/false demonodeapp
 ```
-Place your application in an appropriate directory with proper permissions
+Place your application in an appropriate directory with proper permissions:
 ```
 sudo mkdir -p /opt/demo-node-app
 sudo cp -r * /opt/demo-node-app
