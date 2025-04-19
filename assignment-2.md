@@ -3,7 +3,7 @@
 ##  Part 1: Application Setup
 
 Create a Node.js project directory and initialize it with npm:
-```
+```bash
 mkdir demo-node-app
 cd demo-node-app
 npm init -y
